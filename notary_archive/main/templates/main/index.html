@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %} Главная страница {% endblock %}
+{% block content %}
+<div class="content">
+                <!--Блок быстрого поиска-->
+                <form action="#" class="quick-search" method="post" name="quick-search">
+                    <h2>Быстрый поиск по архиву</h2>
+
+                    <p class="reset-box">Сброс<button type="reset" class="reset"><img src="./static/images/png/reset.png" alt=""></button></p>
+
+                    <div class="search-flex">
+                        <div class="search-field">
+                            <label for="">Реестровый номер:</label>
+                            <input type="text">
+                        </div>
+                        <div class="search-field">
+                            <label for="">Адрес Объекта недвижимости:</label>
+                            <input type="text">
+                        </div>
+                        <div class="search-field">
+                            <label for="">ФИО</label>
+                            <input type="text">
+                        </div>
+                        <div class="search-field">
+                            <label for="">Нотариус/г.к.</label>
+                            <input type="text">
+                        </div>
+                        <!-- <div class="search-field">
+                            <label for="">Адрес Объекта недвижимости</label>
+                            <input type="text">
+                        </div> -->
+
+
+                    </div>
+                    <button type="submit" class="search-button">Найти</button>
+
+                </form>
+                <hr class="line">
+                <h2 class="arhiv-section-title">Основные разделы:</h2>
+                <div class="arhiv-section">
+                    <a href="#">
+                        <div class="arhiv-section-card">
+                            <h3>Наследственные дела</h3>
+
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="arhiv-section-card">
+                            <h3>Завещания</h3>
+                            <p>Завещания, распоряжения об отмене завещаний, наследственные договоры, соглашения о
+                                расторжении или
+                                изменении наследственных договоров, отказы от наследственных договоров</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="arhiv-section-card">
+                            <h3>Договоры и Соглашения</h3>
+                            <p>Договоры и соглашения об отчуждении недвижимости, соглащения об их расторжении или
+                                изменении</p>
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+{% endblock %}

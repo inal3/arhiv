@@ -1,0 +1,300 @@
+body {
+
+    margin: 0px;
+    width: 100%;
+}
+
+.container {
+    min-height: 100vh;
+    /* Минимальная высота = 100% высоты окна */
+    color: #ecf0f1;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+    /* Цвет ссылок становится таким же, как цвет родительского элемента */
+    text-decoration: none;
+    /* Убираем подчёркивание */
+    background-color: transparent;
+    /* Фон прозрачный, чтобы не выделяться */
+    cursor: pointer;
+    /* Оставляем указатель, чтобы было понятно, что ссылка кликабельна */
+}
+
+.logo img {
+    width: 110px;
+    height: 110px;
+    display: block;
+    margin: 0 auto;
+    display: block;
+    border-radius: 50%;
+    transition: box-shadow 0.3s;
+}
+
+.logo:hover img {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.logo {
+    width: 280px;
+
+}
+
+.profile {
+    margin-right: 25px;
+    cursor: pointer;
+    width: 110px;
+    height: 110px;
+    filter: brightness(0) saturate(100%) invert(61%) sepia(94%) saturate(500%) hue-rotate(190deg) brightness(101%) contrast(101%);
+
+
+
+    /* box-shadow: 5px 5px 5px black; */
+
+}
+
+
+.sidebar {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.sidebar-main {
+    padding-left: 20px;
+    width: 260px;
+    background: linear-gradient(165deg, #2c3e50, #4a6491);
+    flex: 1;
+    border-top: 1px solid white;
+    /* Занимает все доступное пространство */
+
+}
+
+.nav-section ul {
+    font-size: 25px;
+
+}
+
+.nav-section h3 {
+    font-size: 25px;
+}
+
+.nav-links ul li {
+    margin-bottom: 15px;
+}
+
+h1 {
+    margin: 0 auto;
+    color: #ecf0f1;
+}
+
+.header {
+    background: linear-gradient(135deg, #2c3e50, #4a6491);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 110px;
+
+}
+
+.nav-section-title {
+    padding: 20px 0 20px 0;
+    margin: 0;
+}
+
+.main {
+    width: 100%;
+    background-color: #f2ebeb;
+    display: flex;
+    flex: 1;
+
+    /* color: #333; */
+}
+
+.content {
+    color: #333;
+    background-color: beige;
+    ;
+}
+
+
+.authorization {
+    padding: 10px 0 0 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 25px;
+
+}
+
+.input-authorization {
+    height: 25px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 25px;
+    padding: 0 8px 0 8px;
+    margin: 0 10px 0 10px;
+}
+
+.submit-authorization {
+    height: 30px;
+    font-size: 20px;
+    padding: 0 15px 0 15px;
+    background-color: #4682B4;
+    margin-left: 20px;
+    margin-right: 25px;
+    border-radius: 9px;
+}
+
+.search-button {
+    margin-bottom: 20px;
+    background-color: #4682B4;
+    width: calc(100% - 50px);
+    height: 45px;
+    margin: 0 25px;
+    font-size: 25px;
+    border-radius: 15px;
+    font-family: auto;
+    transition: transform 0.2s ease;
+
+}
+
+
+
+
+
+
+.search-field input {
+    width: 100%;
+    padding: 5px 5px;
+    font-size: 25px;
+    border-radius: 7px;
+
+}
+
+.search-field {
+    flex-grow: 0;
+    /* Не растягивается */
+    flex-shrink: 0;
+    /* Не сжимается */
+    flex-basis: calc(50% - 25px);
+    /* Базовый размер */
+
+}
+
+.quick-search h2 {
+    margin-left: 20px;
+    margin-top: 0;
+    font-size: 22px;
+    padding-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.quick-search {
+
+    padding-bottom: 25px;
+    background-color: beige;
+
+}
+
+.line {
+    margin: 0 25px;
+    height: 1px;
+    background-color: rgb(201, 189, 189);
+}
+
+.search-flex {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin: 25px;
+    font-size: 25px;
+}
+
+.arhiv-section-card {
+    width: 320px;
+    min-height: 150px;
+    background-color: bisque;
+    border-radius: 20px;
+}
+
+.search-flex .search-field:last-child:nth-child(odd) {
+    flex-basis: calc(100% - 25px);
+    /* Растягивает последний элемент на всю ширину */
+}
+
+.arhiv-section {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 0px 25px 25px 25px;
+}
+
+.arhiv-section-card h3 {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.arhiv-section-title {
+    margin-left: 25px;
+}
+
+.arhiv-section-card p {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-indent: 20px;
+    text-align: justify;
+    color: #696969;
+}
+
+
+button.reset {
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    margin-left: 25px;
+    margin-right: 55px;
+
+}
+
+button.reset img:hover {
+    transform: rotate(-180deg);
+    transition: transform 1s;
+}
+
+
+.reset-box {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 25px;
+    margin: 0;
+}
+
+
+
+.nav-links ul {
+    list-style: none;
+    /* Убираем стандартные маркеры */
+    padding-left: 0;
+    /* Убираем отступ слева */
+}
+
+.nav-links li {
+    padding-bottom: 5px;
+    padding-left: 50px;
+    /* Отступ для картинки */
+    background-image: url('/static/images/png/icons8-папки-50.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 35px 35px;
+}
