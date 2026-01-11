@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def index_testaments(request):
+    return render(request, 'testaments/index_testaments.html')

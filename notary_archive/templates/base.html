@@ -1,10 +1,11 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="static/css/style_main.css">
+    <link rel="stylesheet" href='{% static "css/style_main.css" %}'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Главная страница{% endblock %}</title>
 </head>
@@ -16,12 +17,12 @@
         <header class="header">
             <div class="logo">
 
-                <a href="#"><img src="static/images/png/logotip.png" alt="Эмблема Нотариальной палаты" width="110px"
+                <a href="{% url 'home' %}"><img src="{% static 'images/png/logotip.png' %}" alt="Эмблема Нотариальной палаты" width="110px"
                         height="110px"></a>
             </div>
 
-            <h1>Архив Нотариальной палаты Республики Северная Осетия Алания</h1>
-            <img src="static/images/svg/user-profile-filled.svg" alt="" class="profile">
+            <h1>Архив Нотариальной палаты Республики Северная Осетия - Алания</h1>
+            <img src="{% static 'images/svg/user-profile-filled.svg' %}" alt="" class="profile">
 
         </header>
 
@@ -36,9 +37,9 @@
 
                         <nav class="nav-links">
                             <ul>
-                                <li><a href="#">Наследственные дела</a></li>
-                                <li><a href="#">Завещания</a></li>
-                                <li><a href="#">Договоры и Соглашения</a></li>
+                                <li><a href="{% url 'index_ic' %}">Наследственные дела</a></li>
+                                <li><a href="{% url 'index_contracts' %}">Завещания</a></li>
+                                <li><a href="{% url 'index_contracts' %}">Договоры и Соглашения</a></li>
                             </ul>
 
 
@@ -65,7 +66,7 @@
         </div>
 
     </div>
-    <script src="static/js/script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>

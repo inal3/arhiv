@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def index_contracts(request):
+    return render(request, 'contracts/index_contracts.html')
