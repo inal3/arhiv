@@ -40,7 +40,7 @@ class Notary(models.Model):
 
     notary_district = models.CharField(
         choices=NOTARY_DISTRICTS,
-        max_length=150,
+        max_length=50,
         verbose_name="Нотариальный округ",
         help_text="Нотариальный округ",
         blank=True,
@@ -68,36 +68,74 @@ class Notary(models.Model):
         return self.name
 
 
-class InheritanceCases(models.Model):
-    """Модель наследственного дела"""
-
-    number = models.CharField(
-        max_length=50,
-        verbose_name='Номер н/д',
-        help_text='Номер н/д')
-
-    last_name = models.CharField(
-        max_length=50,
-        verbose_name='Фамилия наследодателя',
-        help_text='Фамилия наследодателя')
-
-    first_name = models.CharField(
-        max_length=50,
-        verbose_name='Имя наследодателя',
-        help_text='Имя наследодателя')
-
-    patronymic = models.CharField(
-        max_length=50,
-        verbose_name='Отчество наследодателя',
-        help_text='Отчество наследодателя',
-        blank=True,
-        default='')
-
-class Statement(models.Model):
-    """Модель заявлений"""
-
-    statement_type = models.CharField(
-
+class Person(models.Model):
+    last_name=models.CharField(
+        max_length=100,
+        verbose_name='Фамилия',
+        help_text='Фамилия физического лица'
     )
- 
-    statement_fio = models.CharField
+
+    name=models.CharField(
+        max_length=100,
+        verbose_name='Имя',
+        help_text='Имя физического лица'
+    )
+
+    patronymic=models.CharField(
+        max_length=100,
+        verbose_name='Отчество',
+        help_text='Отчество физического лица',
+        blank=True,
+        default=''
+    )
+
+    birth_date=models.DateField(
+        verbose_name='Дата рождения',
+        help_text='Дата рождения',
+        null=True,
+        blank=True
+    )
+
+    death_date=models.DateField(
+        verbose_name='Дата смерти',
+        help_text='Дата смерти(для наследодателей)',
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = 'Физическое лицо',
+        verbose_name_plural = 'Физические лица',
+        ordering = ['last_name', 'name', 'patronymic'],
+        indexes = [
+            models.Index(fields=['last_name', 'name']),
+        ]
+
+    def __str__(self):
+        if self.patronymic:
+            return f"{self.last_name} {self.name} {self.patronymic}"
+        return f"{self.last_name} {self.name}"
+    
+    @property
+    def full_name(self):
+        """Полное ФИО"""
+        parts = [self.last_name, self.name]
+        if self.patronymic:
+            parts.append(self.patronymic)
+        return ' '.join(parts)
+    
+    @property
+    def initials(self):
+        """Фамилия и инициалы"""
+        initials = f"{self.last_name} {self.name[0]}." if self.name else self.last_name
+        if self.patronymic:
+            initials += f"{self.patronymic[0]}."
+        return initials
+    
+    @property
+    def is_alive(self):
+        """Проверка, жив ли человек"""
+        return self.death_date is None
+
+#TODO: дописать адреса желательно через фиас указав, что это последнее место жительства
+

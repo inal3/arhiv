@@ -2,4 +2,77 @@
 {% block title %} Наследственные дела {% endblock %}
 {% block content %}
 
+<div class="content">
+    <!--Блок быстрого поиска-->
+    <form action="#" class="quick-search" method="post" name="quick-search">
+        <h2>Быстрый поиск по архиву</h2>
+        <h3 class="title_h3_ic">Наследственные дела</h3>
+
+        <p class="reset-box">Сброс<button type="reset" class="reset"><img src="./static/images/png/reset.png"
+                    alt=""></button></p>
+
+        <div class="search-flex">
+            <div class="search-field">
+                <label for="">ФИО наследодателя:</label>
+                <input type="text">
+            </div>
+            <div class="search-field">
+                <label for="">Дата смерти:</label>
+                <input type="text">
+            </div>
+            <div class="search-field">
+                <label for="">Номер н/д:</label>
+                <input type="text">
+            </div>
+            <div class="search-field">
+                <label for="">Адрес последнего места жительства:</label>
+                <input type="text">
+            </div>
+            <div class="search-field">
+                <label for="">Заявители:</label>
+                <input type="text">
+            </div>
+            <div class="search-field">
+                <label for="">Реестровый номер свидетельство:</label>
+                <input type="text">
+            </div>
+
+
+        </div>
+        <button type="submit" class="search-button">Найти</button>
+
+    </form>
+    <hr class="line">
+
+    <div class="search-result">
+
+         <table class="results-table" border="1">
+            <caption>Результат поиска</caption>
+            <thead>
+                <tr>
+                    <th>№ н/д</th>
+                    <th>Наследодатель</th>
+                    <th>Дата Смерти </th>
+                    <th>Нотариус</th>
+                    <th>Посмотреть Документ</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+                <tr>
+                    <td>Тест 1</td>
+                    <td>Тест 1</td>
+                    <td>Тест 1</td>
+                    <td>Тест 1</td>
+                    <td>Тест 1</td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
 {% endblock %}
