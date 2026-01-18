@@ -118,7 +118,8 @@ h1 {
 .content {
     color: #333;
     background-color: beige;
-    ;
+    width: 100%;
+    
 }
 
 
@@ -318,9 +319,24 @@ button.reset img:hover {
     padding: 10px;
     width: 1500px;
     font-size: 25px;
+    
 }
 
 .results-table tbody tr td{
     text-align: center;
-    
+}
+
+.inheritance_card-title{
+    text-align: center;
+}
+
+.results-table tbody tr td.ic_td{
+    width: 50%;
+    text-align: left;
+    text-indent: 10px;
+}
+
+.ic_table{
+    margin: 0 auto;
+    margin-top: 25px;
 }
