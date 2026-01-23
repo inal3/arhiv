@@ -2,14 +2,17 @@
 {% block title %} Наследственные дела {% endblock %}
 {% block content %}
 
+
 <div class="content">
     <!--Блок быстрого поиска-->
     <form action="#" class="quick-search" method="post" name="quick-search">
         <h2>Быстрый поиск по архиву</h2>
         <h3 class="title_h3_ic">Наследственные дела</h3>
 
-        <p class="reset-box">Сброс<button type="reset" class="reset"><img src="./static/images/png/reset.png"
-                    alt=""></button></p>
+        <p class="reset-box">
+            <button type="button" class="add_ic-buton">Добавить</button>
+                Сброс<button type="reset" class="reset"><img src="/static/images/png/reset.png"alt=""></button>
+        </p>
 
         <div class="search-flex">
             <div class="search-field">
@@ -46,7 +49,7 @@
 
     <div class="search-result">
 
-         <table class="results-table" border="1">
+        <table class="results-table" border="1">
             <caption>Результат поиска</caption>
             <thead>
                 <tr>
@@ -54,21 +57,22 @@
                     <th>Наследодатель</th>
                     <th>Дата Смерти </th>
                     <th>Нотариус</th>
-                    <th>Посмотреть Документ</th>
+                    <th colspan="2">Действие</th>
                 </tr>
             </thead>
 
             <tbody>
-                
+
                 <tr>
                     <td>Тест 1</td>
                     <td>Тест 1</td>
                     <td>Тест 1</td>
                     <td>Тест 1</td>
-                    <td>Тест 1</td>
+                    <td class="td-button"><button>Просмотреть</button></td>
+                    <td class="td-button"><button>Изменить</button></td>
                 </tr>
-                <!-- <a href="{% url 'detail_ic' %}">Detail_IC</a> -->
             </tbody>
+            <a href="{% url 'detail_ic' %}">Detail_IC</a>
         </table>
 
 
