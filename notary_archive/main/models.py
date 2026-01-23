@@ -1,5 +1,5 @@
 from django.db import models
-
+import os
 
 class Notary(models.Model):
     """Модель нотариуса"""
@@ -139,3 +139,112 @@ class Person(models.Model):
 
 #TODO: дописать адреса желательно через фиас указав, что это последнее место жительства
 
+class DocumentImage(models.Model):
+        
+    """Универсальная модель для хранения образов нотариальных документов.
+    Содержит обязательные поля: файл, реестровый номер, дата."""
+
+    DOCUMENT_TYPES=[
+        ('testament', 'Завещание'),
+        ('certificate_of_inher', 'Свидетельство о праве на наследство'),
+        ('certificate_of_ownership', 'Свидетельство о праве собственности'),
+        ('contract_of_inher', 'Наследственный договор'),
+        ('other', 'Иной документ'),
+    ]
+        
+    file = models.FileField(
+        upload_to='document_images/%Y/%m/%d/',
+        verbose_name='Файл образа',
+        help_text='Отсканированный образ документа'
+    )
+
+    registration_number = models.CharField(
+        max_length=50,
+        verbose_name="Реестровый номер",
+        help_text='Реестровый номер'
+    )
+
+    document_date = models.DateField(
+        verbose_name='Дата документа',
+        help_text='Дата документа'
+    )
+
+    document_type = models.CharField(
+        max_length=50,
+        choices=DOCUMENT_TYPES,
+        verbose_name='Вид документа'
+    )
+
+    upload_date = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата загрузки'
+    )
+     # Связь с конкретным документом (если известно)
+    # Для завещаний
+    testament = models.ForeignKey(
+        'testaments.Testament',
+        on_delete=models.SET_NULL,
+        verbose_name='Завещание',
+        null=True,
+        blank=True,
+        related_name='images'
+    )
+    
+    # Для наследственных дел
+    inheritance_case = models.ForeignKey(
+        'inheritance_cases.InheritanceCase',
+        on_delete=models.SET_NULL,
+        verbose_name='Наследственное дело',
+        null=True,
+        blank=True,
+        related_name='images'
+    )
+    
+    class Meta:
+        verbose_name = 'Образ документа'
+        verbose_name_plural = 'Образы документов'
+        ordering = ['-upload_date']
+        indexes = [
+            models.Index(fields=['registration_number']),
+            models.Index(fields=['document_date']),
+            models.Index(fields=['document_type']),
+        ]
+    
+    def __str__(self):
+        return f"{self.get_document_type_display()} №{self.registration_number}"
+    
+    @property
+    def filename(self):
+        """Имя файла без пути"""
+        return os.path.basename(self.file.name)
+    
+    def save(self, *args, **kwargs):
+        """Автоматически связываем образ с документом по номеру"""
+        if self.registration_number and not (self.testament or self.inheritance_case):
+            self._auto_link_document()
+        super().save(*args, **kwargs)
+    
+    def _auto_link_document(self):
+        """Автоматически связывает образ с документом по реестровому номеру"""
+        from testaments.models import Testament
+        from inheritance_cases.models import InheritanceCase
+        
+        # Сначала ищем завещание
+        testament = Testament.objects.filter(
+            reg_number=self.registration_number
+        ).first()
+        
+        if testament:
+            self.testament = testament
+            self.document_type = 'testament'
+            return
+        
+        # Если не нашли завещание, ищем наследственное дело
+        inheritance_case = InheritanceCase.objects.filter(
+            case_number=self.registration_number
+        ).first()
+        
+        if inheritance_case:
+            self.inheritance_case = inheritance_case
+            self.document_type = 'inheritance'
+            return
